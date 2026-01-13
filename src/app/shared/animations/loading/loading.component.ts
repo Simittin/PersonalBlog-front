@@ -6,8 +6,8 @@ import { AnimationOptions, LottieComponent } from 'ngx-lottie';
     selector: 'app-loading-spinner',
     standalone: true,
     imports: [CommonModule, LottieComponent],
-    templateUrl: './loading-spinner.component.html',
-    styleUrls: ['./loading-spinner.component.scss']
+    templateUrl: './loading.component.html',
+    styleUrls: ['./loading.component.scss']
 })
 export class LoadingSpinnerComponent implements OnInit, OnDestroy {
     options: AnimationOptions = {

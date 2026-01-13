@@ -7,6 +7,8 @@ import { BlogDetailComponent } from './pages/blog-detail/blog-detail.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ContactComponent } from './pages/contact/contact.component';
 
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -25,5 +27,5 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/admin/admin.routes').then(m => m.ADMIN_ROUTES)
   },
 
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotFoundComponent }
 ];

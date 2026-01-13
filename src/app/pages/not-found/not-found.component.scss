@@ -1,0 +1,40 @@
+.not-found-container {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden; // Sayfa kaydırmayı engelle
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color); // Tema arkaplan rengi
+    padding: 1rem;
+
+    .animation-wrapper {
+        width: 100%;
+        max-width: 400px; // Animasyon boyutunu sınırla
+        max-height: 50vh; // Yükseklik olarak da sınırla
+        margin-bottom: 2rem;
+
+        // Lottie'nin kendi container'ını da sınırla
+        ::ng-deep lottie-player {
+            max-height: 100%;
+        }
+    }
+
+    .home-btn {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        background-color: #000;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            background-color: #333; // Koyu gri
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+    }
+}
