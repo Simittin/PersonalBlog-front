@@ -1,0 +1,110 @@
+.page-header {
+    margin-bottom: 2rem;
+
+    h1 {
+        font-size: 2rem;
+        color: var(--text-color);
+        margin: 0;
+    }
+}
+
+.messages-container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.message-card {
+    background: var(--nav-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--nav-border);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .message-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--nav-border);
+
+        .sender-info {
+            h3 {
+                margin: 0 0 0.25rem 0;
+                font-size: 1.1rem;
+                color: var(--text-color);
+            }
+
+            .email {
+                font-size: 0.85rem;
+                color: var(--text-color);
+                opacity: 0.7;
+            }
+        }
+
+        .date {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+    }
+
+    .message-subject {
+        margin-bottom: 0.75rem;
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    .message-body {
+        flex-grow: 1;
+        margin-bottom: 1.5rem;
+
+        p {
+            margin: 0;
+            color: var(--text-color);
+            line-height: 1.5;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+    }
+
+    .message-actions {
+        display: flex;
+        justify-content: flex-end;
+
+        .delete-btn {
+            background-color: #ffeaea;
+            color: #ff4757;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: #ffd1d1;
+            }
+        }
+    }
+}
+
+.no-data {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    background: var(--nav-bg);
+    border-radius: 8px;
+    color: var(--text-color);
+    opacity: 0.6;
+    border: 1px solid var(--nav-border);
+}

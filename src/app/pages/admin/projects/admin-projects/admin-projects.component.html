@@ -1,0 +1,47 @@
+<div class="page-header">
+    <h1>Projeler</h1>
+    <button class="add-btn">Yeni Proje Ekle</button>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Görsel</th>
+                <th>Proje Adı</th>
+                <th>Açıklama</th>
+                <th>Teknolojiler</th>
+                <th>Tarih</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let project of projects">
+                <td>
+                    <img [src]="project.imageUrl" alt="Project Image" class="table-img"
+                        *ngIf="project.imageUrl; else noImg">
+                    <ng-template #noImg>
+                        <div class="no-img-placeholder">Resim Yok</div>
+                    </ng-template>
+                </td>
+                <td>
+                    <a [href]="project.link" target="_blank">{{ project.title }}</a>
+                </td>
+                <td class="truncate" title="{{ project.description }}">{{ project.description }}</td>
+                <td>
+                    <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
+                </td>
+                <td>{{ project.date }}</td>
+                <td>
+                    <div class="actions">
+                        <button class="edit-btn">Düzenle</button>
+                        <button class="delete-btn" (click)="deleteProject(project.id)">Sil</button>
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="projects.length === 0">
+                <td colspan="6" class="no-data">Görüntülenecek proje yok.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

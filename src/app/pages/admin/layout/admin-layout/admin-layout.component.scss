@@ -1,0 +1,101 @@
+.admin-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--nav-bg);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    border-right: 1px solid var(--nav-border);
+    transition: background-color 0.3s, border-color 0.3s;
+
+    .sidebar-header {
+        padding: 2rem;
+        border-bottom: 1px solid var(--nav-border);
+
+        h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+    }
+
+    .sidebar-nav {
+        flex-grow: 1;
+        padding: 1rem 0;
+        overflow-y: auto;
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                a {
+                    display: block;
+                    padding: 1rem 2rem;
+                    color: var(--text-color);
+                    text-decoration: none;
+                    transition: all 0.3s ease;
+                    border-left: 3px solid transparent;
+                    opacity: 0.8;
+
+                    &:hover {
+                        color: var(--primary-color);
+                        background-color: var(--hover-bg);
+                        opacity: 1;
+                    }
+
+                    &.active {
+                        color: var(--primary-color);
+                        background-color: var(--hover-bg);
+                        border-left-color: var(--primary-color);
+                        opacity: 1;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+
+    .sidebar-footer {
+        padding: 1rem;
+        border-top: 1px solid var(--nav-border);
+
+        .logout-btn {
+            display: block;
+            padding: 0.8rem;
+            text-align: center;
+            color: var(--text-color);
+            background-color: var(--hover-bg);
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid var(--nav-border);
+
+            &:hover {
+                background-color: #ff4757;
+                color: white;
+                border-color: #ff4757;
+            }
+        }
+    }
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: var(--bg-color);
+    overflow-y: auto;
+    padding: 2rem;
+    transition: background-color 0.3s;
+}

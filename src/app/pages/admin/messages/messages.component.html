@@ -1,0 +1,28 @@
+<div class="page-header">
+    <h1>Gelen Mesajlar</h1>
+</div>
+
+<div class="messages-container">
+    <div class="message-card" *ngFor="let msg of messages">
+        <div class="message-header">
+            <div class="sender-info">
+                <h3>{{ msg.name }}</h3>
+                <span class="email">{{ msg.email }}</span>
+            </div>
+            <span class="date">{{ msg.date | date:'dd.MM.yyyy HH:mm' }}</span>
+        </div>
+        <div class="message-subject">
+            <strong>Konu:</strong> {{ msg.subject }}
+        </div>
+        <div class="message-body">
+            <p>{{ msg.message }}</p>
+        </div>
+        <div class="message-actions">
+            <button class="delete-btn" (click)="deleteMessage(msg.id)">Sil</button>
+        </div>
+    </div>
+
+    <div *ngIf="messages.length === 0" class="no-data">
+        Henüz hiç mesaj yok.
+    </div>
+</div>
