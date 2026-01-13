@@ -1,0 +1,289 @@
+.about-page {
+    padding-bottom: 50px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 50px;
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        color: var(--text-color);
+    }
+
+    p {
+        color: var(--text-color);
+        opacity: 0.8;
+        font-size: 1.1rem;
+    }
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    border-left: 5px solid var(--text-color);
+    padding-left: 15px;
+}
+
+/* Profile Section */
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background-color: var(--nav-bg);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--nav-border);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        /* Minimal hover effect */
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .profile-image-container {
+        flex-shrink: 0;
+
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            /* Daire */
+            border: 1px solid var(--nav-border);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            filter: grayscale(100%);
+            /* Siyah Beyaz Fotoğraf */
+            transition: filter 0.3s ease;
+
+            &:hover {
+                filter: grayscale(0%);
+                /* Hoverda renk gelsin mi? Kullanıcı full B&W dediyse belki gerek yok, ama güzel durur. */
+            }
+        }
+    }
+
+    .profile-text {
+        color: var(--text-color);
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            opacity: 0.9;
+            border-bottom: 1px solid var(--nav-border);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+    }
+}
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.skill-card {
+    background-color: var(--nav-bg);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--nav-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        border-color: var(--text-color);
+    }
+
+    h4 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: var(--text-color);
+        text-align: center;
+        border-bottom: 1px solid var(--nav-border);
+        padding-bottom: 10px;
+        font-weight: 600;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding: 8px 0;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            opacity: 0.9;
+
+            &::before {
+                content: "•";
+                color: var(--text-color);
+                font-weight: bold;
+                display: inline-block;
+                width: 1em;
+                margin-left: 0.5em;
+            }
+        }
+    }
+}
+
+/* Experience & Education - Timeline Style */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 1px;
+        /* Daha ince çizgi */
+        background-color: var(--text-color);
+        opacity: 0.3;
+    }
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: -35px;
+        /* -30px padding + hizalama */
+        top: 6px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: var(--text-color);
+        /* Siyah nokta */
+        border: 2px solid var(--bg-color);
+        /* Beyaz çerçeve (arkaplan rengi) */
+        box-shadow: 0 0 0 1px var(--text-color);
+    }
+
+    .timeline-content {
+        background-color: var(--nav-bg);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid var(--nav-border);
+        position: relative;
+        transition: transform 0.2s ease, border-color 0.2s ease;
+
+        &:hover {
+            transform: translateX(5px);
+            border-color: var(--text-color);
+        }
+
+        .date {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--bg-color);
+            /* Metin rengi arkaplan rengi (beyaz/siyah) */
+            font-weight: 600;
+            margin-bottom: 10px;
+            background-color: var(--text-color);
+            /* Arkaplan siyah (text rengi) */
+            padding: 4px 10px;
+            border-radius: 20px;
+            /* Hap şeklinde */
+        }
+
+        h4 {
+            font-size: 1.2rem;
+            margin: 0 0 5px;
+            color: var(--text-color);
+            font-weight: 700;
+        }
+
+        .company {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-color);
+            margin-bottom: 15px;
+            font-style: italic;
+            opacity: 0.8;
+            border-bottom: 1px solid var(--nav-border);
+            padding-bottom: 10px;
+            width: fit-content;
+        }
+
+        p {
+            color: var(--text-color);
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+    }
+}
+
+// Scroll Animation Styles
+.scroll-animate {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+
+    &.visible {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+// Media query to disable animation on reduced motion settings preference
+@media (prefers-reduced-motion: reduce) {
+    .scroll-animate {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

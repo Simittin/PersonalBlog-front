@@ -1,0 +1,97 @@
+.footer {
+  width: 100%;
+  background-color: var(--nav-bg); /* Navbar rengiyle aynı */
+  border-top: 1px solid var(--nav-border); /* Üstüne çizgi çektik */
+  padding: 40px 0 20px; /* Üstten 40, alttan 20px boşluk */
+  margin-top: auto; /* Sayfa içeriği azsa bile en alta yapışması için */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+/* Sosyal Medya İkonları */
+/* Sosyal Medya İkonları */
+.social-links {
+  display: flex;
+  gap: 20px; /* İkonlar arası boşluk */
+  align-items: center; /* Dikeyde tam ortala */
+
+  a {
+    color: var(--text-color);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    display: flex; /* SVG'yi kutunun içinde ortalamak için */
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50%;
+
+    /* Hover Efekti */
+    &:hover {
+      opacity: 1;
+      background-color: rgba(128, 128, 128, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Genel SVG Ayarı */
+    svg {
+      fill: currentColor;
+      width: 22px; /* Standart Boyut */
+      height: 22px;
+    }
+
+    /* OPTİK DÜZELTME: Steam İkonu */
+    &.steam-link svg {
+      /* Steam ikonu yuvarlak ve diyagonal olduğu için diğerlerinden küçük görünür.
+         Bunu %15 büyüterek dengeliyoruz. */
+      transform: scale(1.15);
+    }
+  }
+}
+
+/* İnce Ayırıcı Çizgi */
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--nav-border);
+  opacity: 0.5;
+}
+
+/* Alt Metinler */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+
+  p {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .tech-stack {
+    font-size: 0.75rem;
+    opacity: 0.5;
+    font-weight: 500;
+  }
+}
+
+/* Mobil için ufak ayar */
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
