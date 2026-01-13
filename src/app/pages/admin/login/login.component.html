@@ -1,0 +1,45 @@
+<div class="login-container">
+    <div class="login-card">
+        <div class="header">
+            <h2>Admin Panel</h2>
+            <p>Devam etmek için giriş yapın</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Kullanıcı Adı</label>
+                <div class="input-wrapper">
+
+                    <input type="text" id="username" formControlName="username" placeholder="Kullanıcı adınızı girin"
+                        [class.error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+                </div>
+                <span class="error-msg"
+                    *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+                    Kullanıcı adı gerekli
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <div class="input-wrapper">
+
+                    <input type="password" id="password" formControlName="password" placeholder="Şifrenizi girin"
+                        [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                </div>
+                <span class="error-msg"
+                    *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                    Şifre gerekli
+                </span>
+            </div>
+
+            <button type="submit" [disabled]="loginForm.invalid || isLoading" class="btn-submit">
+                <span *ngIf="!isLoading">Giriş Yap</span>
+                <span *ngIf="isLoading" class="loader"></span>
+            </button>
+
+            <div class="footer-msg">
+                <p>Geri dönmek için <a routerLink="/">tıklayın</a></p>
+            </div>
+        </form>
+    </div>
+</div>

@@ -13,8 +13,7 @@ app-navbar {
 
 .main-content {
   flex: 1;
-  // padding-top? If navbar were fixed, yes. With sticky, it takes space. 
-  // User didn't ask for specific padding, but flex: 1 effectively pushes footer down.
+  padding-top: 70px;
 }
 
 app-footbar {

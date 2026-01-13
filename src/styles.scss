@@ -42,8 +42,7 @@ body {
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  padding-top: 70px;
-  /* Navbar fixed olduğu için üstten boşluk */
+  /* padding-top removed - moved to MainLayout */
 }
 
 a {
