@@ -75,8 +75,11 @@
 
                 <div class="form-group">
                     <label for="message">Mesaj</label>
-                    <textarea id="message" formControlName="message" rows="5"
+                    <textarea id="message" formControlName="message" rows="5" maxlength="250"
                         placeholder="Bana nelerden bahsetmek istersiniz?"></textarea>
+                    <div *ngIf="contactForm.get('message')?.value?.length === 250" class="char-limit-warning">
+                        Maksimum 250 karakter sınırına ulaştınız.
+                    </div>
                 </div>
 
                 <button type="submit" class="btn-submit" [disabled]="contactForm.invalid">
