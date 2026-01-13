@@ -1,0 +1,29 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="projects-page container section-padding" *ngIf="!isLoading">
+    <div class="projects-header">
+        <h1>My Projects</h1>
+        <p>A selection of projects I've worked on, showcasing my technical skills and passion for building things.</p>
+    </div>
+
+    <div class="projects-grid">
+        <div class="project-card scroll-animate" *ngFor="let project of projects">
+            <div class="project-image-container">
+                <img [src]="project.imageUrl" [alt]="project.title" class="project-img">
+                <div class="project-overlay">
+                    <a [href]="project.githubUrl" target="_blank" class="view-code-btn">
+                        <i class="fab fa-github"></i> GitHub'a Git
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-content">
+                <h3 class="project-title">{{ project.title }}</h3>
+                <p class="project-description">{{ project.description }}</p>
+
+                <div class="project-tech-stack">
+                    <span class="tech-tag" *ngFor="let tech of project.technologies">{{ tech }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

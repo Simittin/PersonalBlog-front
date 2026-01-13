@@ -1,0 +1,81 @@
+/* Global Reset ve Font Ayarları */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+
+  /* Varsayılan (Light Mode) Renkler */
+  --bg-color: #f8f9fa;
+  /* Açık Gri Arkaplan */
+  --text-color: #333333;
+  /* Koyu Gri Yazı */
+  --nav-bg: #ffffff;
+  /* Beyaz Navbar */
+  --nav-border: #e0e0e0;
+  /* Navbar Çizgisi */
+  --primary-color: #3b82f6;
+  /* Mavi (Vurgu Rengi) */
+  --hover-bg: #f3f4f6;
+  /* Buton üzerine gelince */
+}
+
+/* Dark Mode Renkleri (Body'ye 'dark' class'ı eklenince bunlar aktif olur) */
+.dark {
+  --bg-color: #111827;
+  /* Çok Koyu Lacivert Arkaplan */
+  --text-color: #f3f4f6;
+  /* Açık Gri Yazı */
+  --nav-bg: #1f2937;
+  /* Koyu Navbar */
+  --nav-border: #374151;
+  /* Koyu Çizgi */
+  --hover-bg: #374151;
+  /* Dark hover */
+}
+
+/* Uygulama Genel Ayarları */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding-top: 70px;
+  /* Navbar fixed olduğu için üstten boşluk */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Container yapısı (İçeriği ortalamak için) */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Scroll Animation Styles
+.scroll-animate {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  will-change: opacity, transform;
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Media query to disable animation on reduced motion settings preference
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

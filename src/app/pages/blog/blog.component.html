@@ -1,0 +1,29 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="blog-page container section-padding" *ngIf="!isLoading">
+    <div class="blog-header">
+        <h1>Latest Insights</h1>
+        <p>Thoughts, tutorials, and deep dives into web development, design, and technology.</p>
+    </div>
+
+    <div class="blog-grid">
+        <div class="blog-card scroll-animate" *ngFor="let post of blogPosts" (click)="onPostClick(post.id)">
+            <div class="blog-image-container">
+                <img [src]="post.imageUrl" [alt]="post.title" class="blog-img">
+                <div class="blog-overlay">
+                    <span class="read-more-btn">
+                        Read Article <i class="fas fa-arrow-right"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="blog-content">
+                <div class="blog-date">
+                    <i class="far fa-calendar-alt"></i>
+                    {{ post.publishDate | date:'mediumDate' }}
+                </div>
+                <h3 class="blog-title">{{ post.title }}</h3>
+                <p class="blog-summary">{{ post.summary }}</p>
+            </div>
+        </div>
+    </div>
+</div>

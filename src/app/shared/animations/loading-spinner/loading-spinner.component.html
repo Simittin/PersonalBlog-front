@@ -1,0 +1,30 @@
+<div class="loading-overlay">
+    <div class="gears-container">
+        <div class="gear big-gear">
+            <div class="center"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+        </div>
+        <div class="gear small-gear">
+            <div class="center"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+        </div>
+        <div class="gear third-gear">
+            <div class="center"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+            <div class="tooth"></div>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-bar" [style.width.%]="progress"></div>
+    </div>
+    <div class="progress-text">{{ progress }}%</div>
+</div>
