@@ -1,28 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnimationOptions, LottieComponent } from 'ngx-lottie';
 
 @Component({
     selector: 'app-loading-spinner',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, LottieComponent],
     templateUrl: './loading-spinner.component.html',
     styleUrls: ['./loading-spinner.component.scss']
 })
-export class LoadingSpinnerComponent implements OnInit {
+export class LoadingSpinnerComponent implements OnInit, OnDestroy {
+    options: AnimationOptions = {
+        path: '/Progress of loading hand.json',
+        loop: true,
+        autoplay: true
+    };
+
     progress: number = 0;
     loadingText: string = 'Loading...';
+    private progressInterval: any;
 
     ngOnInit(): void {
         this.simulateProgress();
     }
 
     simulateProgress() {
-        const interval = setInterval(() => {
+        this.progressInterval = setInterval(() => {
             if (this.progress < 90) {
                 this.progress += Math.floor(Math.random() * 5) + 1;
             } else {
-                clearInterval(interval);
+                clearInterval(this.progressInterval);
             }
         }, 100);
+    }
+
+    ngOnDestroy() {
+        if (this.progressInterval) {
+            clearInterval(this.progressInterval);
+        }
     }
 }

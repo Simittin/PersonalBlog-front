@@ -2,6 +2,7 @@ import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideLottieOptions } from 'ngx-lottie';
 
 import { routes } from './app.routes';
 
@@ -14,6 +15,9 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideHttpClient(),
-    provideAnimations()
+    provideAnimations(),
+    provideLottieOptions({
+      player: () => import('lottie-web'),
+    })
   ]
 };
