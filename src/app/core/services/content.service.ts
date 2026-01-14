@@ -63,4 +63,86 @@ export class ContentService {
       })
     );
   }
+
+  // Admin Methods
+
+  // Messages
+  getMessages(): Observable<any[]> {
+    // Mock data for now
+    return of([
+      { id: '1', name: 'Ahmet Yılmaz', email: 'ahmet@example.com', subject: 'Proje Hakkında', message: 'Merhaba, projenizle ilgileniyorum.', date: new Date() },
+      { id: '2', name: 'Ayşe Demir', email: 'ayse@example.com', subject: 'Blog Yazısı', message: 'Son yazınızı çok beğendim.', date: new Date(Date.now() - 86400000) }
+    ]);
+  }
+
+  deleteMessage(id: string): Observable<void> {
+    // Mock delete
+    return of(undefined);
+  }
+
+  // Projects CRUD
+  getProjects(): Observable<Project[]> {
+    // Reusing the logic from getLatestProject but returning all
+    return this.http.get<any[]>(`${this.apiUrl}/projects`).pipe(
+      map(projects => {
+        if (!projects) return [];
+        return projects.map(p => ({
+          id: p.id,
+          title: p.name || p.title,
+          description: p.description || '',
+          technologies: p.tech ? (Array.isArray(p.tech) ? p.tech : p.tech.split(', ')) : [],
+          githubUrl: p.github || p.githubUrl || '',
+          imageUrl: p.image || p.imageUrl,
+          date: p.date,
+          link: p.link
+        }));
+      })
+    );
+  }
+
+  createProject(project: Project): Observable<Project> {
+    return this.http.post<Project>(`${this.apiUrl}/projects`, project);
+  }
+
+  updateProject(project: Project): Observable<Project> {
+    return this.http.put<Project>(`${this.apiUrl}/projects/${project.id}`, project);
+  }
+
+  deleteProject(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/projects/${id}`);
+  }
+
+
+  // Blog CRUD
+  getBlogs(): Observable<BlogPost[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/blog`).pipe(
+      map(posts => {
+        if (!posts) return [];
+        return posts.map(p => ({
+          id: p.id,
+          title: p.title,
+          summary: p.summary || '',
+          content: p.content,
+          publishDate: new Date(p.date || p.publishDate),
+          imageUrl: p.image || p.imageUrl,
+          author: p.author || 'Admin',
+          category: p.category || 'General',
+          readingTime: p.readingTime || 5,
+          link: p.link
+        }));
+      })
+    );
+  }
+
+  createBlog(blog: BlogPost): Observable<BlogPost> {
+    return this.http.post<BlogPost>(`${this.apiUrl}/blog`, blog);
+  }
+
+  updateBlog(blog: BlogPost): Observable<BlogPost> {
+    return this.http.put<BlogPost>(`${this.apiUrl}/blog/${blog.id}`, blog);
+  }
+
+  deleteBlog(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/blog/${id}`);
+  }
 }

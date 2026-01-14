@@ -6,6 +6,9 @@
         </div>
 
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="alert-error" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
             <div class="form-group">
                 <label for="username">Kullanıcı Adı</label>
                 <div class="input-wrapper">

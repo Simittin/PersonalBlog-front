@@ -1,0 +1,12 @@
+<div class="loading-overlay">
+    <div class="lottie-container">
+        <ng-lottie [options]="options" height="300px" width="300px"></ng-lottie>
+    </div>
+
+    <div class="progress-wrapper">
+        <div class="progress-track">
+            <div class="progress-bar" [style.width.%]="progress"></div>
+        </div>
+        <div class="progress-text">{{ progress }}%</div>
+    </div>
+</div>

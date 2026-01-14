@@ -1,0 +1,37 @@
+<div class="page-header">
+    <h1>Blog Yazıları</h1>
+    <button class="add-btn">Yeni Yazı Ekle</button>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Görsel</th>
+                <th>Başlık</th>
+                <th>Özet</th>
+                <th>Tarih</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let blog of blogs">
+                <td>
+                    <img [src]="blog.imageUrl" alt="Blog Image" class="table-img">
+                </td>
+                <td>{{ blog.title }}</td>
+                <td class="truncate" title="{{ blog.summary }}">{{ blog.summary }}</td>
+                <td>{{ blog.publishDate | date:'dd.MM.yyyy' }}</td>
+                <td>
+                    <div class="actions">
+                        <button class="edit-btn">Düzenle</button>
+                        <button class="delete-btn" (click)="deleteBlog(blog.id)">Sil</button>
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="blogs.length === 0">
+                <td colspan="5" class="no-data">Görüntülenecek yazı yok.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

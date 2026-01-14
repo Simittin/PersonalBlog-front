@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
 import { Project } from '../../core/models/project';
 import { ProjectService } from '../../core/services/project.service';
-import { LoadingSpinnerComponent } from '../../shared/animations/loading-spinner/loading-spinner.component';
+import { LoadingSpinnerComponent } from '../../shared/animations/loading/loading.component';
 
 @Component({
   selector: 'app-projects',

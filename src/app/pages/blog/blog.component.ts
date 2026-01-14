@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { BlogPost } from '../../core/models/blog-post';
 import { BlogService } from '../../core/services/blog.service';
-import { LoadingSpinnerComponent } from '../../shared/animations/loading-spinner/loading-spinner.component';
+import { LoadingSpinnerComponent } from '../../shared/animations/loading/loading.component';
 
 @Component({
   selector: 'app-blog',

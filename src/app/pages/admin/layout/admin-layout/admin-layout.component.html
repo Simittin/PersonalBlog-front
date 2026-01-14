@@ -1,0 +1,22 @@
+<div class="admin-container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Panel</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a routerLink="./dashboard" routerLinkActive="active">Anasayfa</a></li>
+                <li><a routerLink="./messages" routerLinkActive="active">Mesajlar</a></li>
+                <li><a routerLink="./blog" routerLinkActive="active">Blog Yönetimi</a></li>
+                <li><a routerLink="./projects" routerLinkActive="active">Proje Yönetimi</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <a routerLink="/login" class="logout-btn">Çıkış Yap</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <router-outlet></router-outlet>
+    </main>
+</div>

@@ -26,15 +26,41 @@ export class LoginComponent {
     }
 
     onSubmit() {
+        console.log('Submit button clicked'); // Debug log
         if (this.loginForm.valid) {
             this.isLoading = true;
-            // Simulating API call
-            setTimeout(() => {
-                console.log(this.loginForm.value);
+
+            const rawUsername = this.loginForm.get('username')?.value;
+            const rawPassword = this.loginForm.get('password')?.value;
+
+            const username = rawUsername ? rawUsername.trim() : '';
+            const password = rawPassword ? rawPassword.trim() : '';
+
+            console.log('Attempting login with:', username, password);
+
+            // Temporarily accept ANY credentials if username is admin
+            if (username === 'admin') {
+                console.log('Login success. Navigating...');
+                this.router.navigate(['/admin/dashboard']).then(success => {
+                    if (success) {
+                        console.log('Navigation successful');
+                    } else {
+                        console.error('Navigation failed');
+                        this.errorMessage = 'Yönlendirme hatası!';
+                        this.isLoading = false;
+                    }
+                }).catch(err => {
+                    console.error('Navigation error:', err);
+                    this.errorMessage = 'Yönlendirme sistemsel hatası: ' + err;
+                    this.isLoading = false;
+                });
+            } else {
+                console.log('Invalid credentials');
+                this.errorMessage = 'Kullanıcı adı "admin" olmalı.';
                 this.isLoading = false;
-                // Navigation logic will go here
-            }, 1500);
+            }
         } else {
+            console.log('Form invalid');
             this.loginForm.markAllAsTouched();
         }
     }
