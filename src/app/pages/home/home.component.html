@@ -27,7 +27,9 @@
     </div>
 
     <!-- Steam Card -->
-    <div class="card steam-card" [class.loaded]="!!steamData">
+    <div class="card steam-card" [class.loaded]="!!steamData"
+      [style.backgroundImage]="steamData?.headerImage ? 'url(' + steamData.headerImage + ')' : null"
+      [class.has-image]="steamData?.headerImage">
       <ng-container *ngIf="steamData">
         <div class="card-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -40,9 +42,10 @@
           </svg>
         </div>
         <div class="card-content">
-          <span class="label">{{ steamData.status }}</span>
+          <span class="label">{{ steamData.status === 'Oynuyor' ? 'Şu an Oynuyor' : steamData.status }}</span>
           <h3 class="title text-truncate">{{ steamData.game }}</h3>
-          <p class="subtitle">{{ steamData.hours }} saat oynandı</p>
+          <p class="subtitle" *ngIf="steamData.status === 'Oynuyor'">Steam</p>
+          <p class="subtitle" *ngIf="steamData.status !== 'Oynuyor'">Son Oynanan</p>
         </div>
       </ng-container>
     </div>
