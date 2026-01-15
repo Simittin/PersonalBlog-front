@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { ContentService } from '../../core/services/content.service';
+
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -13,7 +15,7 @@ export class ContactComponent {
 
   contactForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private contentService: ContentService) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -24,10 +26,17 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log('Form Submitted:', this.contactForm.value);
-      // Buraya backend post işlemi gelecek
-      alert('Mesajınız gönderildi!'); // Geçici bildirim
-      this.contactForm.reset();
+      this.contentService.sendMessage(this.contactForm.value).subscribe({
+        next: (response) => {
+          console.log('Message sent:', response);
+          alert('Mesajınız başarıyla gönderildi!');
+          this.contactForm.reset();
+        },
+        error: (error) => {
+          console.error('Error sending message:', error);
+          alert('Mesaj gönderilirken bir hata oluştu.');
+        }
+      });
     } else {
       // Formu doğrula ve hataları göster
       this.contactForm.markAllAsTouched();

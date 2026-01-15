@@ -1,10 +1,11 @@
-import { Component,OnInit,OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink,RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule,RouterLink,RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   standalone: true
@@ -14,8 +15,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   now: Date = new Date();
   private timer: any;
 
-  isDarkMode: boolean = false;
+  isDarkMode: any;
   currentLang: string = 'TR';
+
+  constructor(private themeService: ThemeService) {
+    this.isDarkMode = this.themeService.isDarkMode;
+  }
 
   ngOnInit(): void {
     // Saati her saniye güncelle
@@ -32,13 +37,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   toggleTheme() {
-    this.isDarkMode = !this.isDarkMode;
-    // Buraya ileride ThemeService bağlanacak
-    if (this.isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    this.themeService.toggleTheme();
   }
 
   toggleLanguage() {

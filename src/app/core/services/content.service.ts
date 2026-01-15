@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 import { Project } from '../models/project';
 import { BlogPost } from '../models/blog-post';
+import { Message } from '../models/message';
 
 @Injectable({
   providedIn: 'root'
@@ -67,17 +68,17 @@ export class ContentService {
   // Admin Methods
 
   // Messages
-  getMessages(): Observable<any[]> {
-    // Mock data for now
-    return of([
-      { id: '1', name: 'Ahmet Yılmaz', email: 'ahmet@example.com', subject: 'Proje Hakkında', message: 'Merhaba, projenizle ilgileniyorum.', date: new Date() },
-      { id: '2', name: 'Ayşe Demir', email: 'ayse@example.com', subject: 'Blog Yazısı', message: 'Son yazınızı çok beğendim.', date: new Date(Date.now() - 86400000) }
-    ]);
+  // Messages
+  getMessages(): Observable<Message[]> {
+    return this.http.get<Message[]>(`${this.apiUrl}/messages`);
   }
 
-  deleteMessage(id: string): Observable<void> {
-    // Mock delete
-    return of(undefined);
+  sendMessage(message: Partial<Message>): Observable<Message> {
+    return this.http.post<Message>(`${this.apiUrl}/messages`, message);
+  }
+
+  deleteMessage(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/messages/${id}`);
   }
 
   // Projects CRUD
