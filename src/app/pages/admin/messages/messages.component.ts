@@ -26,7 +26,7 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  deleteMessage(id: string) {
+  deleteMessage(id: number) {
     if (confirm('Bu mesajı silmek istediğinize emin misiniz?')) {
       this.contentService.deleteMessage(id).subscribe(() => {
         this.messages = this.messages.filter(m => m.id !== id);
