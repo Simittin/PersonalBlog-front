@@ -113,6 +113,21 @@ export class ContentService {
     return this.http.delete<void>(`${this.apiUrl}/projects/${id}`);
   }
 
+  getProjectById(id: string | number): Observable<Project> {
+    return this.http.get<any>(`${this.apiUrl}/projects/${id}`).pipe(
+      map(p => ({
+        id: p.id,
+        title: p.name || p.title,
+        description: p.description || '',
+        technologies: p.tech ? (Array.isArray(p.tech) ? p.tech : p.tech.split(', ')) : [],
+        githubUrl: p.github || p.githubUrl || '',
+        imageUrl: p.image || p.imageUrl,
+        date: p.date,
+        link: p.link
+      }))
+    );
+  }
+
 
   // Blog CRUD
   getBlogs(): Observable<BlogPost[]> {
@@ -145,5 +160,22 @@ export class ContentService {
 
   deleteBlog(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/blog/${id}`);
+  }
+
+  getBlogById(id: string | number): Observable<BlogPost> {
+    return this.http.get<any>(`${this.apiUrl}/blog/${id}`).pipe(
+      map(p => ({
+        id: p.id,
+        title: p.title,
+        summary: p.summary || '',
+        content: p.content,
+        publishDate: new Date(p.date || p.publishDate),
+        imageUrl: p.image || p.imageUrl,
+        author: p.author || 'Admin',
+        category: p.category || 'General',
+        readingTime: p.readingTime || 5,
+        link: p.link
+      }))
+    );
   }
 }

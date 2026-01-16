@@ -1,4 +1,5 @@
-<div class="blog-detail-page" *ngIf="post">
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div class="blog-detail-page" *ngIf="!isLoading && post">
     <!-- Hero Section -->
     <div class="hero-section">
         <div class="container">

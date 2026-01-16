@@ -19,7 +19,11 @@ export const ADMIN_ROUTES: Routes = [
             { path: 'dashboard', component: DashboardComponent },
             { path: 'messages', component: MessagesComponent },
             { path: 'blog', component: AdminBlogComponent },
-            { path: 'projects', component: AdminProjectsComponent }
+            { path: 'blog/new', loadComponent: () => import('./blog/blog-form/blog-form.component').then(m => m.BlogFormComponent) },
+            { path: 'blog/edit/:id', loadComponent: () => import('./blog/blog-form/blog-form.component').then(m => m.BlogFormComponent) },
+            { path: 'projects', component: AdminProjectsComponent },
+            { path: 'projects/new', loadComponent: () => import('./projects/project-form/project-form.component').then(m => m.ProjectFormComponent) },
+            { path: 'projects/edit/:id', loadComponent: () => import('./projects/project-form/project-form.component').then(m => m.ProjectFormComponent) }
         ]
     }
 ];
