@@ -1,6 +1,6 @@
 <div class="page-header">
     <h1>Projeler</h1>
-    <button class="add-btn">Yeni Proje Ekle</button>
+    <button class="add-btn" routerLink="/admin/projects/new">Yeni Proje Ekle</button>
 </div>
 
 <div class="table-container">
@@ -34,7 +34,7 @@
                 <td>{{ project.date }}</td>
                 <td>
                     <div class="actions">
-                        <button class="edit-btn">Düzenle</button>
+                        <button class="edit-btn" [routerLink]="['/admin/projects/edit', project.id]">Düzenle</button>
                         <button class="delete-btn" (click)="deleteProject(project.id)">Sil</button>
                     </div>
                 </td>

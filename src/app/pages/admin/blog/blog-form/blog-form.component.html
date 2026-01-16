@@ -1,0 +1,70 @@
+<div class="page-header">
+    <h1>{{ isEditMode ? 'Yazıyı Düzenle' : 'Yeni Yazı Ekle' }}</h1>
+    <button class="back-btn" routerLink="/admin/blog">Geri Dön</button>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Başlık</label>
+            <input type="text" id="title" formControlName="title" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['title'].errors }">
+            <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+                <div *ngIf="f['title'].errors['required']">Başlık gereklidir.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="summary">Özet (Kısa Açıklama)</label>
+            <textarea id="summary" formControlName="summary" class="form-control" rows="3"
+                [ngClass]="{ 'is-invalid': submitted && f['summary'].errors }"></textarea>
+            <div *ngIf="submitted && f['summary'].errors" class="invalid-feedback">
+                <div *ngIf="f['summary'].errors['required']">Özet gereklidir.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="content">İçerik</label>
+            <textarea id="content" formControlName="content" class="form-control" rows="10"
+                [ngClass]="{ 'is-invalid': submitted && f['content'].errors }"></textarea>
+            <div *ngIf="submitted && f['content'].errors" class="invalid-feedback">
+                <div *ngIf="f['content'].errors['required']">İçerik gereklidir.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="imageUrl">Görsel URL</label>
+            <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control" placeholder="https://...">
+            <small class="form-text text-muted">Görselin doğrudan bağlantısını (raw url) giriniz.</small>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="author">Yazar</label>
+                <input type="text" id="author" formControlName="author" class="form-control">
+            </div>
+            <div class="form-group col">
+                <label for="category">Kategori</label>
+                <input type="text" id="category" formControlName="category" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="readingTime">Okuma Süresi (dk)</label>
+                <input type="number" id="readingTime" formControlName="readingTime" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f['readingTime'].errors }">
+            </div>
+            <div class="form-group col">
+                <label for="publishDate">Yayın Tarihi</label>
+                <input type="date" id="publishDate" formControlName="publishDate" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-btn" [disabled]="loading">
+                {{ loading ? 'Kaydediliyor...' : 'Kaydet' }}
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,64 @@
+<div class="page-header">
+    <h1>{{ isEditMode ? 'Projeyi Düzenle' : 'Yeni Proje Ekle' }}</h1>
+    <button class="back-btn" routerLink="/admin/projects">Geri Dön</button>
+</div>
+
+<div class="form-container">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="title">Proje Adı</label>
+            <input type="text" id="title" formControlName="title" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f['title'].errors }">
+            <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+                <div *ngIf="f['title'].errors['required']">Proje adı gereklidir.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Açıklama</label>
+            <textarea id="description" formControlName="description" class="form-control" rows="4"
+                [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+            <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+                <div *ngIf="f['description'].errors['required']">Açıklama gereklidir.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="technologies">Teknolojiler (Virgül ile ayırın)</label>
+            <input type="text" id="technologies" formControlName="technologies" class="form-control"
+                placeholder="Örn: Angular, Node.js, MongoDB"
+                [ngClass]="{ 'is-invalid': submitted && f['technologies'].errors }">
+            <div *ngIf="submitted && f['technologies'].errors" class="invalid-feedback">
+                <div *ngIf="f['technologies'].errors['required']">Teknolojiler gereklidir.</div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="githubUrl">GitHub URL</label>
+                <input type="text" id="githubUrl" formControlName="githubUrl" class="form-control">
+            </div>
+            <div class="form-group col">
+                <label for="link">Proje Linki (Canlı)</label>
+                <input type="text" id="link" formControlName="link" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="imageUrl">Görsel URL</label>
+                <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control">
+            </div>
+            <div class="form-group col">
+                <label for="date">Tarih</label>
+                <input type="date" id="date" formControlName="date" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-btn" [disabled]="loading">
+                {{ loading ? 'Kaydediliyor...' : 'Kaydet' }}
+            </button>
+        </div>
+    </form>
+</div>

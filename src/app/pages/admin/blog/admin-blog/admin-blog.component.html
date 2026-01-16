@@ -1,6 +1,6 @@
 <div class="page-header">
     <h1>Blog Yazıları</h1>
-    <button class="add-btn">Yeni Yazı Ekle</button>
+    <button class="add-btn" routerLink="/admin/blog/new">Yeni Yazı Ekle</button>
 </div>
 
 <div class="table-container">
@@ -24,7 +24,7 @@
                 <td>{{ blog.publishDate | date:'dd.MM.yyyy' }}</td>
                 <td>
                     <div class="actions">
-                        <button class="edit-btn">Düzenle</button>
+                        <button class="edit-btn" [routerLink]="['/admin/blog/edit', blog.id]">Düzenle</button>
                         <button class="delete-btn" (click)="deleteBlog(blog.id)">Sil</button>
                     </div>
                 </td>

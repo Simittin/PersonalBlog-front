@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { ContentService } from '../../../../core/services/content.service';
 import { BlogPost } from '../../../../core/models/blog-post';
 
 @Component({
   selector: 'app-admin-blog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './admin-blog.component.html',
   styleUrl: './admin-blog.component.scss'
 })
