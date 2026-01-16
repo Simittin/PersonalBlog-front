@@ -52,3 +52,21 @@
     color: #333;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
+
+:host-context(.dark) {
+    .loading-overlay {
+        background: #111827; // Solid dark mode background to hide content
+    }
+
+    .progress-track {
+        background: #374151; // Dark mode border color
+    }
+
+    .progress-bar {
+        background: #f3f4f6; // Light text color for contrast
+    }
+
+    .progress-text {
+        color: #f3f4f6;
+    }
+}
