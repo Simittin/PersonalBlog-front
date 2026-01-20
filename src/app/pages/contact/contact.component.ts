@@ -14,6 +14,7 @@ import { ContentService } from '../../core/services/content.service';
 export class ContactComponent {
 
   contactForm: FormGroup;
+  showSuccessModal: boolean = false;
 
   constructor(private fb: FormBuilder, private contentService: ContentService) {
     this.contactForm = this.fb.group({
@@ -29,7 +30,7 @@ export class ContactComponent {
       this.contentService.sendMessage(this.contactForm.value).subscribe({
         next: (response) => {
           console.log('Message sent:', response);
-          alert('Mesajınız başarıyla gönderildi!');
+          this.showSuccessModal = true;
           this.contactForm.reset();
         },
         error: (error) => {
@@ -41,5 +42,9 @@ export class ContactComponent {
       // Formu doğrula ve hataları göster
       this.contactForm.markAllAsTouched();
     }
+  }
+
+  closeModal() {
+    this.showSuccessModal = false;
   }
 }
