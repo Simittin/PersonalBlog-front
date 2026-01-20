@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent {
 
     constructor(
         private fb: FormBuilder,
-        private router: Router
+        private router: Router,
+        private authService: AuthService
     ) {
         this.loginForm = this.fb.group({
             username: ['', [Validators.required]],
@@ -38,8 +40,10 @@ export class LoginComponent {
 
             console.log('Attempting login with:', username, password);
 
-            // Temporarily accept ANY credentials if username is admin
-            if (username === 'admin') {
+            // Use AuthService for login
+            const success = this.authService.login(username);
+
+            if (success) {
                 console.log('Login success. Navigating...');
                 this.router.navigate(['/admin/dashboard']).then(success => {
                     if (success) {
@@ -56,7 +60,7 @@ export class LoginComponent {
                 });
             } else {
                 console.log('Invalid credentials');
-                this.errorMessage = 'Kullanıcı adı "admin" olmalı.';
+                this.errorMessage = 'Kullanıcı adı veya şifre hatalı. (Admin için sadece kullanıcı adı kontrol edilir)';
                 this.isLoading = false;
             }
         } else {

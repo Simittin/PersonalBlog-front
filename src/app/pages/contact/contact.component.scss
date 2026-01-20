@@ -242,12 +242,10 @@
     gap: 15px;
 
     .modal-icon {
-        color: #10b981; // Success green
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-bottom: 10px;
-
-        svg {
-            stroke-width: 2.5px;
-        }
     }
 
     h2 {

@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 
 import { ContentService } from '../../core/services/content.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, LottieComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
@@ -15,6 +16,11 @@ export class ContactComponent {
 
   contactForm: FormGroup;
   showSuccessModal: boolean = false;
+  options: AnimationOptions = {
+    path: '/Success.json',
+    loop: false,
+    autoplay: true
+  };
 
   constructor(private fb: FormBuilder, private contentService: ContentService) {
     this.contactForm = this.fb.group({
